@@ -1,0 +1,65 @@
+#protForm {
+    background-color:#F2F7F9;
+    padding:20px;
+    margin: 50px auto;    
+    border: 6px solid #8FB5C1;
+    -moz-border-radius:15px;
+    -webkit-border-radius:15px;
+    border-radius:15px;
+}
+ 
+#protForm h1 {
+    font-size:42px;
+}
+ 
+#protForm h2 {
+    margin-bottom:15px;
+    font-style:italic;
+    font-weight:normal;
+}
+ 
+#protForm input, 
+#protForm select, 
+#protForm textarea, 
+#protForm label {
+    font-size:15px;
+    margin-bottom:2px;
+}
+ 
+#protForm #submitValidate {
+    width: 100px;
+    background-color:#333;
+    color:#FFF;
+    border:none;
+    display:block;
+    margin-bottom:0px;
+    margin-right:6px;
+    background-color:#8FB5C1;
+    -moz-border-radius:8px;
+}
+ 
+#protForm #submitValidate:hover {
+    background-color: #A6CFDD;
+}
+ 
+#protForm #submitValidate:active {
+    position:relative;
+    top:1px;
+}
+
+#protForm #customer,
+#protForm #addendum_panel {
+    width: 200px; 
+    float: left; 
+    margin-right: 300px;
+}
+
+#protForm .input_action, 
+#protForm .input_part {
+    margin-bottom:4px;
+}
+
+#dialog-confirm {
+    float:left; 
+    margin:0 7px 20px 0;
+}

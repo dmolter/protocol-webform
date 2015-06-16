@@ -1,0 +1,84 @@
+/* TODO use "optional" css hook */
+.optional:before {
+    content: "(optional)";
+    font-size: 80%;
+    color: grey;
+    margin-left: 1em;
+}
+
+input[readonly]
+{
+    background-color:lightgrey;
+}
+
+input:focus:invalid {
+	background-color: #FFE6E6;
+}
+input:focus:valid {
+    background-color: lightgreen;
+}
+
+.interacted:invalid {
+    border: 1px solid red;
+}
+.interacted:valid {
+    border: 1px solid green;
+}
+
+/*input:required {
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+    -o-box-shadow:none;
+    box-shadow:none;
+}
+*/
+
+fieldset {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+
+
+#errors {
+    border:solid 1px #E58E8E;
+    padding:10px;
+    margin:25px 0px;
+    display:block;
+    -webkit-border-radius:8px;
+    -moz-border-radius:8px;
+    border-radius:8px;
+    background:#FFE6E6;
+    display:none;
+}
+ 
+#errors li {
+    padding:2px;
+    list-style:inside;    
+}
+ 
+#errors #info {
+    font-weight:bold;
+}
+ 
+#errors #info:before {
+    content: '';    
+}
+
+#errors.visible {
+    display:block;    
+}
+
+
+
+:invalid {
+    box-shadow: none; /* FF */
+    outline: 0;       /* IE 10 */
+}
+
+
+
+
+
+
+

@@ -1,0 +1,202 @@
+
+<!DOCTYPE HTML>
+
+<html>
+<head>
+    <!--<meta charset="utf-8" />-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Arbeitsprotokoll</title>
+    
+    <!-- third party styles-->
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/redmond/jquery-ui.min.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" 
+      href="//cdn.datatables.net/plug-ins/9dcbecd42ad/integration/jqueryui/dataTables.jqueryui.css">
+
+    <link rel="stylesheet" href="../webform/form.css">
+    <link rel="stylesheet" href="../prot/form.css">
+    
+
+    <!-- third party scripts-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <script src="//cdn.datatables.net/plug-ins/9dcbecd42ad/integration/jqueryui/dataTables.jqueryui.js"></script>
+    <script src="../webform/datepicker.js"></script>
+    <script src="../webform/datepicker-de.js"></script>
+
+    <script src="../webform/webform.js"></script>
+    <script src="form.js"></script>
+    <script src="dynamic-input-elements.js"></script>
+    <script src="../webform/autocomplete.js"></script>
+    <script src="protocol-autocomplete.js"></script>
+    <script src="validation.js"></script>
+</head>
+
+
+
+
+<body>
+
+<!--######### THE FORM ##################-->
+
+
+<div id="protocol_form_div" class="form_container">
+
+<ul id="errors" class="error_container"> <span id="info">Es gab folgende Fehler:</span></ul>
+
+<form id="protForm" autocomplete="off">
+
+<input id="submitValidate" type="submit" name="submitValidate" value="Hinzufügen">
+
+<fieldset><legend>Kunde:</legend>
+
+  <div id="customer">
+    <fieldset><legend>Anschrift:</legend>
+      <p><label>Name:<br>
+      <input id="c_name" name="c_name" type="text" size="50" maxlength="32">
+      </label></p>
+      <p><label>PLZ:<br>
+      <input id="postcode" name="postcode" type="text" size="50" maxlength="5">
+      </label></p>
+      <p><label>Ort:<br>
+      <input id="city" name="city" type="text" size="50" maxlength="26">
+      </label></p>
+      <p><label>Strasse:<br>
+      <input id="street" name="street" type="text" size="50" maxlength="26">
+      </label></p>
+      <p><label>Hausnummer:<br>
+      <input id="street_num" name="street_num" type="text" size="50" maxlength="5">
+      </label></p>
+      <p><label>E-Mail:<br>
+      <input id="email" name="email" type="email" size="50" maxlength="50" autocomplete="on">
+      </label></p>
+    </fieldset>
+  </div>
+  
+  <div id="contact">
+    <fieldset><legend>Ansprechpartner:</legend>
+
+      <p><label>Anrede:<br>
+      <input id="contact_form_of_address" name="contact_form_of_address" type="text" 
+          list="list_contact_form_of_address" size="50" maxlength="10"/>
+      <datalist id="list_contact_form_of_address">
+          <option>Herr</option>
+          <option>Frau</option>
+      </datalist>
+      </label></p>
+
+      <p><label>Titel:<span class="optional"></span><br>
+      <input id="contact_title" name="contact_title" list="list_title" type="text" size="50" maxlength="9">
+      <datalist id="list_title">
+          <option>Dr.</option>
+          <option>Prof.</option>
+      </datalist>
+      </label></p>
+
+      <p><label>Vorname:<span class="optional"></span><br>
+      <input id="contact_first" name="contact_first" type="text" size="50" maxlength="20">
+      </label></p>
+        
+      <p><label>Name:<br>
+      <input id="contact_last" name="contact_last" type="text" size="50" maxlength="30" autocomplete="off">
+      </label></p>
+    </fieldset>
+  </div>
+
+</fieldset>
+
+<label>Techniker: <input id="tech" name="tech" type="text" list="tech_list" size="50" maxlength="30"/></label>
+<datalist id="tech_list">
+  <option>Techniker 1</option>
+  <option>Techniker 2</option>
+  <option>Techniker 3</option>
+</datalist>
+<label>Datum:       <input id="date" name="date" type="text"></label>
+<label>Fernwartung?: <input id="remote" name="remote" type="checkbox" ></label>
+
+<!-- dynamic fields: actions -->
+
+<fieldset><legend>Tätigkeiten<span class="max_action_count"></span>:</legend>
+  <div id="input_action_1" class="input_action">
+    <label>Tätigkeit: <input class="action" id="action_1" name="action_1" type="text" size="50" maxlength="65"></label>
+    <label>von:       <input class="begin_time" id="begin_time_1" name="begin_time_1" type="time" step="900"></label>
+    <label>bis:       <input class="end_time" id="end_time_1" name="end_time_1" type="time" step="900"></label>
+    <label>Stunden:   <input class="hours" id="hours_1" name="hours_1" type="text" readonly></label>
+    <label class="hours_alert"></label>
+  </div>
+  <div id="button_panel_action">
+      <input type="button" id="btn_add_action" value="Tätigkeit hinzufügen" />
+      <input type="button" id="btn_del_action" value="Tätigkeit entfernen" />
+  </div>
+</fieldset>
+
+<fieldset><legend>Arbeitszeit:</legend>
+  <label>Arbeitszeit (Brutto, in Stunden):
+  <input id="work_total" name="work_total" type="text" readonly>
+  </label>
+    <label>abzüglich Pause (in Minuten):
+  <input id="breaks" name="breaks" type="number" step="15" min="0" max="999">
+  </label>
+    <label>Arbeitszeit (Netto, in Stunden):
+  <input id="work_net" name="work_net" type="text" readonly>
+  </label>
+</fieldset>
+
+<!-- dynamic fields: parts -->
+
+<fieldset><legend>Material<span class="max_part_count">:</span>:<span class="optional"></span></legend>
+  <div id="input_part_1" class="input_part">
+    <label>Art.-Nr.:     <input class="p_name" id="p_name_1" name="p_name_1" type="text" size="20" maxlength="15"> </label>
+    <label>Bezeichnung:  <input class="descr" id="descr_1" name="descr_1" type="text" size="30" maxlength="30"> </label>
+    <label>Seriennummer: <input class="serial" id="serial_1" name="serial_1" type="text" size="20" maxlength="20"> </label>
+    <label>Menge:        <input class="num" id="num_1" name="num_1" type="number" min="1" max="99999"> </label>
+  </div>
+  <div id="button_panel_part">
+    <input type="button" id="btn_add_part" value="Material hinzufügen" />
+    <input type="button" id="btn_del_part" value="Material entfernen" />
+  </div>
+</fieldset>
+
+<fieldset><legend>offene Punkte:<span class="optional"></span></legend>
+  <div id="addendum_panel">
+    <p><label>Punkt 1:<br>
+    <input id="addendum_1" name="addendum_1" type="text" size="50" maxlength="90">
+    </label></p>
+    <p><label>Punkt 2:<br>
+    <input id="addendum_2" name="addendum_2" type="text" size="50" maxlength="90">
+    </label></p>
+    <p><label>Punkt 3:<br>
+    <input id="addendum_3" name="addendum_3" type="text" size="50" maxlength="90">
+    </label></p>
+  </div>
+</fieldset>
+
+
+<input id="cid" name="cid" type="text" value="0" readonly hidden>
+
+</form>
+
+</div>
+
+
+<!--######### RESULT VIEW ##################-->
+<div id="result_view">
+<script> 
+  showTable('protocol', '#result_view', 'German'); 
+</script>
+</div>
+
+
+<!--######### CONFIRM DIALOG ##################-->
+<div id="dialog-confirm" title="PDF senden?" hidden>
+<p>Bitte "OK" klicken, falls alles in Ordnung ist. Um Daten im Formular noch einmal zu bearbeiten, bitte "Abbrechen" klicken.</p>
+</div>
+
+</body>
+
+</html>
+
